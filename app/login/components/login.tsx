@@ -1,3 +1,4 @@
+'use client'
 import {
   CardTitle,
   CardDescription,
@@ -8,8 +9,11 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
 
 export function Login() {
+  const router = useRouter();
   return (
     <div className="w-full h-full">
       <Card className="mx-auto max-w-sm">
@@ -36,7 +40,7 @@ export function Login() {
               </div>
               <Input id="password" required type="password" />
             </div>
-            <Button className="w-full" type="submit">
+            <Button className="w-full" type="submit" onClick={()=>router.push('/cityPedia')}>
               Login
             </Button>
           </div>
