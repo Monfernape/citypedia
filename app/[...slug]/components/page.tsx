@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import Profile from "./components/Profile";
-import Reviews from "./components/Reviews";
+import Profile from "./Profile";
+import Reviews from "./Reviews";
 import Link from "next/link";
-import Accordions from "./components/Accordions";
-import Videos from "./components/Videos";
-import Articals from "./components/Articals";
+import Accordions from "./Accordions";
+import Videos from "./Videos";
+import Articals from "./Articals";
 
 export default function LoginPage() {
   const jsonLdArtical = {
