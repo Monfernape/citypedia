@@ -21,6 +21,7 @@ export default function Reviews() {
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
+
   return (
     <Carousel
       plugins={[plugin.current]}

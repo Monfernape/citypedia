@@ -6,7 +6,9 @@ import {
 } from "@/components/ui/accordion";
 
 export default function Accordions() {
+
   return (
+    <section>
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
@@ -33,5 +35,6 @@ export default function Accordions() {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
+    </section>
   );
 }
