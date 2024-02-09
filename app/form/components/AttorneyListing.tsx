@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 interface Props {
-  handleClick: () => void;
+  handleClick: (id: string) => void;
 }
 
 export function AttorneyListing({ handleClick }: Props) {
@@ -41,7 +41,7 @@ export function AttorneyListing({ handleClick }: Props) {
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={handleClick}>Save changes</Button>
+          <Button onClick={() => handleClick("attorny")}>Save changes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

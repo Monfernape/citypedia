@@ -84,31 +84,50 @@ export default function ProfileForm() {
     ],
   });
 
-  const handleAddProperties = () => {
-    let updated = [...(value.attornery_listing || [])];
-
-    const newdata = {
-      id: "",
-      name: "",
-      adress: "",
-    };
-
-    updated = [...updated, newdata];
-
-    setValue({
-      ...value,
-      attornery_listing: updated,
-    });
+  // Function to generate a random ID
+  const generateRandomId = (): string => {
+    return Math.random().toString(36).substring(7);
   };
 
-  const handleRemoveProperty = (index: number) => {
-    let updated = [...(value.attornery_listing || [])];
+  const handleAddProperties = (id: string) => {
+    let updated = { ...value };
 
-    updated.splice(index, 1);
+    switch (id) {
+      case "attorny":
+        updated.attornery_listing = [
+          ...(updated.attornery_listing || []),
+          { id: generateRandomId(), name: "", adress: "" },
+        ];
+        break;
+      case "embed":
+        updated.embed = [
+          ...(updated.embed || []),
+          { id: generateRandomId(), text: "" },
+        ];
+        break;
+      case "review":
+        updated.review = [
+          ...(updated.review || []),
+          { id: generateRandomId(), name: "", text: "", review: 0 },
+        ];
+        break;
+      default:
+        break;
+    }
+
+    setValue(updated);
+  };
+
+  const handleRemoveProperty = (event: any) => {
+    const id = event.target.id;
+
+    const updatedProperties = value.attornery_listing.filter(
+      (item: any) => item.id !== id
+    );
 
     setValue({
       ...value,
-      attornery_listing: updated,
+      attornery_listing: updatedProperties,
     });
   };
 
@@ -179,8 +198,9 @@ export default function ProfileForm() {
                   <Button
                     variant="outline"
                     type="button"
+                    id={item.id}
                     disabled={index === 0}
-                    onClick={() => handleRemoveProperty(item.id)}
+                    onClick={handleRemoveProperty}
                   >
                     <RemoveIcon />
                   </Button>
@@ -203,33 +223,45 @@ export default function ProfileForm() {
               </>
             ))}
             <div className="flex justify-end">
-              {/* <Button onClick={handleAddProperties}>
-                Add Prop
-              </Button> */}
-              <AttorneyListing handleClick={handleAddProperties} />
+              <AttorneyListing
+                handleClick={(id: string) => handleAddProperties(id)}
+              />
             </div>
           </div>
           <Separator className="my-4" />
           <Label>Embed code</Label>
-          <div className="flex gap-2">
-            <FormField
-              // control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormControl>
-                    <Textarea placeholder="Tex" />
-                  </FormControl>
-                  {/* <FormMessage /> */}
-                </FormItem>
+          {value?.embed.map((item: any, index: number) => (
+            <>
+              <div className="flex gap-2">
+                <FormField
+                  // control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormControl>
+                        <Textarea placeholder="Tex" />
+                      </FormControl>
+                      {/* <FormMessage /> */}
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  variant="outline"
+                  type="button"
+                  id={item.id}
+                  disabled={index === 0}
+                  onClick={handleRemoveProperty}
+                >
+                  <RemoveIcon />
+                </Button>
+              </div>
+              {index !== value?.embed.length - 1 && (
+                <Separator className="my-4" />
               )}
-            />
-            <Button variant="outline" type="button">
-              <RemoveIcon />
-            </Button>
-          </div>
+            </>
+          ))}
           <div className="flex justify-end mt-2">
-            <Embed />
+            <Embed handleClick={(id: string) => handleAddProperties(id)} />
           </div>
           <Separator className="my-4" />
           <div className="flex flex-col gap-2">

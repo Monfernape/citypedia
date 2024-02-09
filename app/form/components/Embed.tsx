@@ -22,7 +22,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-export function Embed() {
+interface Props {
+  handleClick: (id: string) => void;
+}
+
+export function Embed({ handleClick }: Props) {
   const formSchema = z.object({
     code: z.string().min(2, {
       message: "Required",
@@ -71,7 +75,9 @@ export function Embed() {
               )}
             />
             <DialogFooter>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit" onClick={() => handleClick("embed")}>
+                Save changes
+              </Button>
             </DialogFooter>
           </form>
         </Form>
