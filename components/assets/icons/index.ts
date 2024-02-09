@@ -1,0 +1,1 @@
+import RemoveIcon from "./Remove";
