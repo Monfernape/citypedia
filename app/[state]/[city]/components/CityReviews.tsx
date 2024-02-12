@@ -17,10 +17,11 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 
-export default function Reviews() {
+export default function CityReviews() {
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
+
   return (
     <Carousel
       plugins={[plugin.current]}

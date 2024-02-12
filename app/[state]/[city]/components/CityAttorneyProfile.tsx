@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
-export default function Profile() {
+export default function CityAttorneyProfile() {
   return (
     <div className="p-5 border-b-2 rounded-md">
       <div className="flex items-center flex-col">

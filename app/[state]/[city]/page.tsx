@@ -1,23 +1,32 @@
-import { Button } from "@/components/ui/button";
-import Profile from "./components/Profile";
-import Reviews from "./components/Reviews";
 import Link from "next/link";
-import Accordions from "./components/Accordions";
-import Videos from "./components/Videos";
-import Articals from "./components/Articals";
+import { Button } from "@/components/ui/button";
+import CityAttorneyProfile from "./components/CityAttorneyProfile";
+import CityReviews from "./components/CityReviews";
+import CityFAQs from "./components/CityFAQs";
+import CityVideos from "./components/CityVideos";
+import CityArticles from "./components/CityArticles";
+import { RICH_TEXT_JSON } from "./rich-text-scripts";
 
-export default function LoginPage() {
+type Props = {
+  params: { state: string; city: string };
+};
+
+export default function CityDetails({ params }: Props) {
+  const state = decodeURI(params.state);
+  const city = decodeURI(params.city);
+
+  // Fetch data based on state and city
   return (
-    <div className="bg-white p-5 font-Inter">
+    <div className="flex items-center flex-col w-full p-3">
       <h1 className="text-black text-base font-bold pb-2.5">
         Personal Injury attorney near me in Los Angeles, California
       </h1>
       <p className="text-xs font-bold text-[#00000082] pb-2.5">
         Top Rated Personal Injury Lawyers in Los Angeles
       </p>
-      <Profile />
-      <Profile />
-      <Profile />
+      <CityAttorneyProfile />
+      <CityAttorneyProfile />
+      <CityAttorneyProfile />
       <Button variant="link" className="px-0 text-gray-300">
         more
       </Button>
@@ -29,7 +38,17 @@ export default function LoginPage() {
           reliablity.
         </p>
       </div>
-      <Reviews />
+
+      <section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(RICH_TEXT_JSON.REVIEW),
+          }}
+        />
+        <CityReviews />
+      </section>
+
       <Button variant="outline" className="w-full">
         Show all 280 reviews
       </Button>
@@ -38,16 +57,34 @@ export default function LoginPage() {
         Still having questions? Vist over <Link href={"#faq"}>FAQ page</Link> or{" "}
         <Link href={"#contact"}>Contact us</Link>
       </p>
-      <Accordions />
+      <section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(RICH_TEXT_JSON.FAQ),
+          }}
+        />
+        <CityFAQs />
+      </section>
       <Button variant="link" className="px-0 text-gray-300">
         more
       </Button>
       <p className="text-base font-normal text-[#000000] pb-2.5">
         PERSONAL INJURY VIDEOS FOR LOS ANGELES
       </p>
-      <Videos />
-      <p className="text-xs font-normal text-black my-3">ARTICLES</p>
-      <Articals />
+      <CityVideos />
+
+      <section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(RICH_TEXT_JSON.ARTICLE),
+          }}
+        />
+        <p className="text-xs font-normal text-black my-3">ARTICLES</p>
+        <CityArticles />
+      </section>
+
       <Button variant="link" className="px-0 text-gray-300">
         more
       </Button>
