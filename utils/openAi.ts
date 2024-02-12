@@ -1,5 +1,4 @@
 import OpenAI from 'openai';
-import 'dotenv/config'
 
 const openai = new OpenAI({
   apiKey: "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", dangerouslyAllowBrowser: true 

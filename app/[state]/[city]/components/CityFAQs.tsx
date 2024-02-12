@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   Accordion,
   AccordionContent,
@@ -7,25 +7,24 @@ import {
 } from "@/components/ui/accordion";
 import { generateFaqs } from "@/utils/openAi";
 import { useEffect, useState } from "react";
-export default function Accordions() {
 
-  const [chatCompletion, setChatCompletion] = useState<string>('');
+export default function CityFAQs() {
+  const [chatCompletion, setChatCompletion] = useState<string>("");
 
   useEffect(() => {
-    async function fetchChatCompletion() {
-      try {
-        const completion = await generateFaqs('');
-        console.log({completion})
-        setChatCompletion(completion);
-      } catch (error) {
-        console.error('Error fetching chat completion:', error);
-      }
-    }
+    // async function fetchChatCompletion() {
+    //   try {
+    //     const completion = await generateFaqs("");
+    //     console.log({ completion });
+    //     setChatCompletion(completion);
+    //   } catch (error) {
+    //     console.error("Error fetching chat completion:", error);
+    //   }
+    // }
 
-    fetchChatCompletion();
+    // fetchChatCompletion();
   }, []);
 
- console.log({chatCompletion})
   return (
     <section>
       <Accordion type="single" collapsible>

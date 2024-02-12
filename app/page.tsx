@@ -1,11 +1,5 @@
-import Image from "next/image";
-import CityDetails from "./CityDetials";
+import Home from "./components/Home";
 
-
-export default function Home() {
-  return (
-    <div>
-      <CityDetails />
-    </div>
-  );
-} 
+export default function HomePage() {
+  return <Home />;
+}
