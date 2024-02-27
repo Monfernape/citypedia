@@ -6,22 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { City } from "@/server/entities";
 import Image from "next/image";
 import Link from "next/link";
 interface CityInfoProps {
-  city: {
-    name: string;
-    imageUrl: string;
-    country: string;
-    population: number;
-    density: number;
-    timezone: string;
-  };
+  city: City;
 }
 
 const CityPreviewCard: React.FC<CityInfoProps> = ({ city }) => {
   return (
-    <Link href={`/${city.country}/${city.name}`}>
+    <Link href={`/${city.state_name}/${city.city}-${city._id}`}>
       <Card>
         <div className="flex overflow-hidden rounded-t-lg">
           <Image
@@ -33,7 +27,7 @@ const CityPreviewCard: React.FC<CityInfoProps> = ({ city }) => {
           />
         </div>
         <CardHeader className="p-6">
-          <CardTitle className="text-2xl">{city.name}</CardTitle>
+          <CardTitle className="text-2xl">{city.city}</CardTitle>
           <CardDescription>
             A magical mug that enchants your daily sips with wonder and joy
           </CardDescription>
